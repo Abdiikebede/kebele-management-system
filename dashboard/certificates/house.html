@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>House Ownership / Rental Assurance</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      padding: 40px;
+    }
+
+    .assurance-card {
+      max-width: 850px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-left: 5px solid #17a2b8;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .header {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      color: #17a2b8;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      font-weight: 500;
+    }
+
+    .footer-note {
+      font-size: 13px;
+      font-style: italic;
+      color: #555;
+      margin-top: 20px;
+    }
+
+    .property-image {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+
+    .info {
+      font-size: 16px;
+      line-height: 2;
+    }
+
+    .info p {
+      margin: 0;
+    }
+
+    .status-box {
+      font-size: 20px;
+      font-weight: bold;
+      padding: 10px;
+      text-align: center;
+      background-color: #e9ecef;
+      border-radius: 5px;
+    }
+
+    .rental {
+      color: #fff;
+      background-color: #ffc107;
+    }
+
+    .owned {
+      color: #fff;
+      background-color: #28a745;
+    }
+
+    .other {
+      color: #fff;
+      background-color: #6c757d;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="assurance-card">
+  <!-- Header -->
+  <div class="header">
+    <h1>House Ownership / Rental Assurance</h1>
+    <p>Kebele No. 12, Jimma</p>
+  </div>
+
+  <!-- Property Image -->
+  <img id="property-image" src="./Untitled.jpg" alt="House Image" class="property-image">
+
+  <!-- House Owner or Tenant Information -->
+  <div class="section-title">House Owner / Tenant Information</div>
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label class="form-label">Full Name</label>
+      <input type="text" id="full-name" class="form-control" placeholder="Enter Full Name">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">National ID</label>
+      <input type="text" id="national-id" class="form-control" placeholder="Enter National ID">
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label class="form-label">Date of Birth</label>
+      <input type="date" id="dob" class="form-control">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Contact Number</label>
+      <input type="text" id="contact-number" class="form-control" placeholder="Enter Contact Number">
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Address</label>
+    <input type="text" id="address" class="form-control" placeholder="Enter Address">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Type of Housing</label>
+    <select id="housing-type" class="form-control" onchange="updateHousingStatus()">
+      <option value="owned">Owned</option>
+      <option value="rental">Rental</option>
+      <option value="other">Other</option>
+    </select>
+  </div>
+
+  <!-- House Details -->
+  <div class="section-title">Property Details</div>
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label class="form-label">House Address</label>
+      <input type="text" id="house-address" class="form-control" placeholder="Enter House Address">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">House Type</label>
+      <input type="text" id="house-type" class="form-control" placeholder="Enter House Type">
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label class="form-label">Number of Bedrooms</label>
+      <input type="number" id="bedrooms" class="form-control" placeholder="Enter Number of Bedrooms">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Number of Bathrooms</label>
+      <input type="number" id="bathrooms" class="form-control" placeholder="Enter Number of Bathrooms">
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Size of Property (in square meters)</label>
+    <input type="number" id="property-size" class="form-control" placeholder="Enter Property Size">
+  </div>
+
+  <!-- Ownership / Rental Status -->
+  <div class="section-title">Status of Housing</div>
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label class="form-label">Status of Housing</label>
+      <div id="housing-status" class="status-box owned">✔️ Owned</div>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Ownership Date</label>
+      <input type="date" id="ownership-date" class="form-control">
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Landlord Name</label>
+    <input type="text" id="landlord-name" class="form-control" placeholder="Enter Landlord's Name (if rental)">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Rental Amount (if Rental)</label>
+    <input type="number" id="rental-amount" class="form-control" placeholder="Enter Rental Amount">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Payment Method (if Rental)</label>
+    <input type="text" id="payment-method" class="form-control" placeholder="Enter Payment Method">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Additional Notes</label>
+    <textarea id="additional-notes" class="form-control" placeholder="Enter any additional notes"></textarea>
+  </div>
+
+  <!-- Affirmation Section -->
+  <div class="section-title">Affirmation</div>
+  <div class="mb-3">
+    <p>This document affirms that the undersigned individual, <strong id="aff-full-name">Biruk Alemu</strong>, is the legitimate owner of the property mentioned above, as per the details mentioned. The undersigned confirms that all information provided is true to the best of their knowledge.</p>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Date of Assurance</label>
+    <input type="date" id="assurance-date" class="form-control">
+  </div>
+
+  <div class="footer-note">
+    This document serves as an official assurance of the ownership status of the mentioned property.
+  </div>
+
+</div>
+
+<!-- JavaScript for dynamic content -->
+<script>
+  // Update the housing status dynamically based on user input
+  function updateHousingStatus() {
+    var housingType = document.getElementById('housing-type').value;
+    var statusBox = document.getElementById('housing-status');
+    
+    if (housingType === 'owned') {
+      statusBox.textContent = '✔️ Owned';
+      statusBox.className = 'status-box owned';
+    } else if (housingType === 'rental') {
+      statusBox.textContent = '✔️ Rental';
+      statusBox.className = 'status-box rental';
+    } else {
+      statusBox.textContent = '✔️ Other';
+      statusBox.className = 'status-box other';
+    }
+  }
+
+  // Update the affirmation dynamic content
+  document.getElementById('full-name').addEventListener('input', function() {
+    document.getElementById('aff-full-name').textContent = this.value;
+  });
+
+  // Update property image
+  document.getElementById('property-image').addEventListener('click', function() {
+    var newImage = prompt("Enter the URL of the property image:");
+    if (newImage) {
+      this.src = newImage;
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Marriage Certificate</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      padding: 40px;
+    }
+
+    .certificate-card {
+      max-width: 850px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-left: 5px solid #28a745;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .section-title {
+      font-size: 22px;
+      color: #28a745;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      font-weight: 500;
+    }
+
+    .status-box {
+      font-size: 20px;
+      font-weight: bold;
+      padding: 10px;
+      text-align: center;
+      background-color: #e9ecef;
+      border-radius: 5px;
+    }
+
+    .married {
+      color: #fff;
+      background-color: #28a745;
+    }
+
+    .footer-note {
+      font-size: 13px;
+      font-style: italic;
+      color: #555;
+      margin-top: 20px;
+    }
+
+    .certificate-container {
+      border: 3px solid #000;
+      padding: 40px;
+      border-radius: 15px;
+      background-color: white;
+      position: relative;
+    }
+
+    .flags {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .flag {
+      width: 100px;
+    }
+
+    .header {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+
+    .info {
+      font-size: 16px;
+      line-height: 2;
+    }
+
+    .info p {
+      margin: 0;
+    }
+
+    .seal {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 18px;
+    }
+
+    .spouse-images {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .spouse-images img {
+      border-radius: 50%;
+      border: 3px solid #28a745;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      margin: 0 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Form to input dynamic information -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <h2 class="text-center">Enter Marriage Information</h2>
+        <form id="marriageForm">
+          <!-- Spouses' Personal Details -->
+          <div class="section-title">Spouses' Details</div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Husband's Full Name</label>
+              <input type="text" class="form-control" id="husband-name" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Wife's Full Name</label>
+              <input type="text" class="form-control" id="wife-name" required>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Husband's Date of Birth</label>
+              <input type="date" class="form-control" id="husband-dob" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Wife's Date of Birth</label>
+              <input type="date" class="form-control" id="wife-dob" required>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Husband's Nationality</label>
+              <input type="text" class="form-control" id="husband-nationality" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Wife's Nationality</label>
+              <input type="text" class="form-control" id="wife-nationality" required>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Husband's Occupation</label>
+              <input type="text" class="form-control" id="husband-occupation" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Wife's Occupation</label>
+              <input type="text" class="form-control" id="wife-occupation" required>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Address</label>
+            <input type="text" class="form-control" id="address" required>
+          </div>
+
+          <!-- Marriage Details -->
+          <div class="section-title">Marriage Details</div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Date of Marriage</label>
+              <input type="date" class="form-control" id="marriage-date" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Place of Marriage</label>
+              <input type="text" class="form-control" id="marriage-place" required>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Officiant's Name</label>
+            <input type="text" class="form-control" id="officiant-name" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Marriage Registration No.</label>
+            <input type="text" class="form-control" id="registration-number" required>
+          </div>
+
+          <!-- Witnesses -->
+          <div class="section-title">Witnesses</div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Witness 1</label>
+              <input type="text" class="form-control" id="witness1-name" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Witness 2</label>
+              <input type="text" class="form-control" id="witness2-name" required>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Generate Certificate</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Marriage Certificate Display -->
+    <div id="certificate" class="certificate-card" style="display:none;">
+      <!-- Flags -->
+      <div class="flags">
+        <img src="./Flag_of_Ethiopia.svg.webp" class="flag" alt="Ethiopia Flag">
+        <img src="./Flag_of_the_Oromia_Region.svg.png" class="flag" alt="Oromia Flag">
+      </div>
+
+      <!-- Header -->
+      <div class="header">
+        <h1>Marriage Certificate</h1>
+        <p>Kebele No. <span id="kebele-number">001</span>, <span id="kebele-name">Kebele Name</span></p>
+      </div>
+
+      <!-- Spouses' Images -->
+      <div class="spouse-images">
+        <div>
+          <img src="./Untitled.jpg" id="husband-image" alt="Husband's Image">
+          <p><strong>Husband</strong></p>
+        </div>
+        <div>
+          <img src="./Untitled.jpg" id="wife-image" alt="Wife's Image">
+          <p><strong>Wife</strong></p>
+        </div>
+      </div>
+
+      <!-- Spouses' Information -->
+      <div class="section-title">Personal Details of Spouses</div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label">Husband's Name</label>
+          <div class="form-control" id="display-husband-name"></div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Wife's Name</label>
+          <div class="form-control" id="display-wife-name"></div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label">Husband's Date of Birth</label>
+          <div class="form-control" id="display-husband-dob"></div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Wife's Date of Birth</label>
+          <div class="form-control" id="display-wife-dob"></div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label">Husband's Nationality</label>
+          <div class="form-control" id="display-husband-nationality"></div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Wife's Nationality</label>
+          <div class="form-control" id="display-wife-nationality"></div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label">Husband's Occupation</label>
+          <div class="form-control" id="display-husband-occupation"></div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Wife's Occupation</label>
+          <div class="form-control" id="display-wife-occupation"></div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Address</label>
+        <div class="form-control" id="display-address"></div>
+      </div>
+
+      <!-- Marriage Details -->
+      <div class="section-title">Marriage Details</div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label">Date of Marriage</label>
+          <div class="form-control" id="display-marriage-date"></div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Place of Marriage</label>
+          <div class="form-control" id="display-marriage-place"></div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Officiant's Name</label>
+        <div class="form-control" id="display-officiant-name"></div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Marriage Registration No.</label>
+        <div class="form-control" id="display-registration-number"></div>
+      </div>
+
+      <!-- Witnesses -->
+      <div class="section-title">Witnesses</div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label">Witness 1</label>
+          <div class="form-control" id="display-witness1-name"></div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Witness 2</label>
+          <div class="form-control" id="display-witness2-name"></div>
+        </div>
+      </div>
+
+      <div class="status-box married">
+        Marriage Status: <span id="status">Married</span>
+      </div>
+
+      <div class="footer-note">
+        Note: This certificate is valid upon submission to the proper authorities.
+      </div>
+
+      <div class="seal">
+        Official Seal
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('marriageForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Collect form data
+      const husbandName = document.getElementById('husband-name').value;
+      const wifeName = document.getElementById('wife-name').value;
+      const husbandDob = document.getElementById('husband-dob').value;
+      const wifeDob = document.getElementById('wife-dob').value;
+      const husbandNationality = document.getElementById('husband-nationality').value;
+      const wifeNationality = document.getElementById('wife-nationality').value;
+      const husbandOccupation = document.getElementById('husband-occupation').value;
+      const wifeOccupation = document.getElementById('wife-occupation').value;
+      const address = document.getElementById('address').value;
+      const marriageDate = document.getElementById('marriage-date').value;
+      const marriagePlace = document.getElementById('marriage-place').value;
+      const officiantName = document.getElementById('officiant-name').value;
+      const registrationNumber = document.getElementById('registration-number').value;
+      const witness1Name = document.getElementById('witness1-name').value;
+      const witness2Name = document.getElementById('witness2-name').value;
+
+      // Update certificate
+      document.getElementById('certificate').style.display = 'block';
+      document.getElementById('display-husband-name').innerText = husbandName;
+      document.getElementById('display-wife-name').innerText = wifeName;
+      document.getElementById('display-husband-dob').innerText = husbandDob;
+      document.getElementById('display-wife-dob').innerText = wifeDob;
+      document.getElementById('display-husband-nationality').innerText = husbandNationality;
+      document.getElementById('display-wife-nationality').innerText = wifeNationality;
+      document.getElementById('display-husband-occupation').innerText = husbandOccupation;
+      document.getElementById('display-wife-occupation').innerText = wifeOccupation;
+      document.getElementById('display-address').innerText = address;
+      document.getElementById('display-marriage-date').innerText = marriageDate;
+      document.getElementById('display-marriage-place').innerText = marriagePlace;
+      document.getElementById('display-officiant-name').innerText = officiantName;
+      document.getElementById('display-registration-number').innerText = registrationNumber;
+      document.getElementById('display-witness1-name').innerText = witness1Name;
+      document.getElementById('display-witness2-name').innerText = witness2Name;
+    });
+  </script>
+
+</body>
+</html>

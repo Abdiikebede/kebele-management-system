@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Land Tax Payment Evidence - Ifa Bula Kebele</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    body {
+      background: #f4f7fa;
+      padding: 30px;
+    }
+    .receipt {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      max-width: 800px;
+      margin: auto;
+    }
+    .kebele-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .kebele-header h2 {
+      font-weight: bold;
+    }
+    .stamp {
+      width: 100px;
+      opacity: 0.5;
+    }
+    .signature {
+      text-align: right;
+      margin-top: 50px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="receipt animate__animated animate__fadeIn">
+  <div class="kebele-header">
+    <h2>Ifa Bula Kebele Administration</h2>
+    <h4>Land Tax Payment Evidence</h4>
+    <p><strong>Receipt No:</strong> <span id="receiptNo"></span></p>
+  </div>
+
+  <form id="taxForm">
+    <div class="mb-3">
+      <label class="form-label">Full Name</label>
+      <input type="text" class="form-control" id="ownerName" placeholder="Enter full name" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Citizen ID Number</label>
+      <input type="text" class="form-control" id="citizenId" placeholder="Enter ID number" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Land Location</label>
+      <input type="text" class="form-control" id="landLocation" placeholder="Enter land location" required />
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Land Length (m)</label>
+        <input type="number" class="form-control" id="landLength" placeholder="Enter length" required />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Land Width (m)</label>
+        <input type="number" class="form-control" id="landWidth" placeholder="Enter width" required />
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Total Area (m²)</label>
+      <input type="text" class="form-control" id="landArea" readonly />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Tax Amount (ETB)</label>
+      <input type="text" class="form-control" id="taxAmount" readonly />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Date of Payment</label>
+      <input type="text" class="form-control" id="paymentDate" readonly />
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <button type="submit" class="btn btn-success">✅ Generate Receipt</button>
+      <button type="button" class="btn btn-outline-danger" id="resetBtn">🔄 Reset Card</button>
+    </div>
+  </form>
+
+  <div class="signature mt-5">
+    <p>__________________________</p>
+    <p>Official Signature - Ifa Bula Kebele</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Ethiopia_emblem.svg/1200px-Ethiopia_emblem.svg.png" class="stamp mt-2" alt="Kebele Stamp"/>
+  </div>
+</div>
+
+<script>
+  function generateReceiptNumber() {
+    return 'IFB-' + Math.floor(100000 + Math.random() * 900000);
+  }
+
+  function calculateTax(area) {
+    const ratePerSqm = 1.5;
+    return area * ratePerSqm;
+  }
+
+  function updateFields() {
+    const length = parseFloat(document.getElementById("landLength").value) || 0;
+    const width = parseFloat(document.getElementById("landWidth").value) || 0;
+    const area = length * width;
+    document.getElementById("landArea").value = area + " m²";
+    document.getElementById("taxAmount").value = calculateTax(area).toFixed(2) + " ETB";
+  }
+
+  function setDateToday() {
+    const today = new Date().toLocaleDateString();
+    document.getElementById("paymentDate").value = today;
+  }
+
+  function resetForm() {
+    document.getElementById("taxForm").reset();
+    document.getElementById("landArea").value = "";
+    document.getElementById("taxAmount").value = "";
+    document.getElementById("paymentDate").value = "";
+    document.getElementById("receiptNo").textContent = generateReceiptNumber();
+    setDateToday();
+  }
+
+  document.getElementById("landLength").addEventListener("input", updateFields);
+  document.getElementById("landWidth").addEventListener("input", updateFields);
+
+  document.getElementById("taxForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    updateFields();
+    alert("✅ Tax Receipt Generated Successfully!");
+  });
+
+  document.getElementById("resetBtn").addEventListener("click", resetForm);
+
+  // On page load
+  resetForm();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Death Status Evidence Form</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      padding: 40px;
+    }
+
+    .evidence-card {
+      max-width: 850px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-left: 5px solid #dc3545;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .section-title {
+      font-size: 22px;
+      color: #dc3545;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      font-weight: 500;
+    }
+
+    .status-box {
+      font-size: 20px;
+      font-weight: bold;
+      padding: 10px;
+      text-align: center;
+      background-color: #e9ecef;
+      border-radius: 5px;
+    }
+
+    .deceased {
+      color: #fff;
+      background-color: #dc3545;
+    }
+
+    .not-deceased {
+      color: #fff;
+      background-color: #28a745;
+    }
+
+    .footer-note {
+      font-size: 13px;
+      font-style: italic;
+      color: #555;
+      margin-top: 20px;
+    }
+      .certificate-container {
+            border: 3px solid #000;
+            padding: 40px;
+            border-radius: 15px;
+            background-color: white;
+            position: relative;
+        }
+        .flags {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .flag {
+            width: 100px;
+        }
+        .header {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        .info {
+            font-size: 16px;
+            line-height: 2;
+        }
+        .info p {
+            margin: 0;
+        }
+        .seal {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 18px;
+        }
+  </style>
+</head>
+<body>
+
+<div class="evidence-card">
+     <div class="flags">
+            <img src="./Flag_of_Ethiopia.svg.webp" class="flag" alt="Ethiopia Flag">
+            <img src="./Flag_of_the_Oromia_Region.svg.png" class="flag" alt="Oromia Flag">
+        </div>
+
+  <div class="section-title">Death Evidence Record</div>
+
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label class="form-label">Full Name</label>
+      <div class="form-control">Kebede Alemu</div>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Citizen ID</label>
+      <div class="form-control">ET123456789</div>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <label class="form-label">Sex</label>
+      <div class="form-control">Male</div>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Date of Birth</label>
+      <div class="form-control">March 12, 1950</div>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Date of Death</label>
+      <div class="form-control">April 2, 2025</div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Place of Death</label>
+    <div class="form-control">Jimma General Hospital</div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label class="form-label">Confirmed By</label>
+      <div class="form-control">Dr. Mesfin Tadesse</div>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Record ID</label>
+      <div class="form-control">DE-2025-0042</div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Notes / Cause of Death</label>
+    <div class="form-control">Natural Causes related to age</div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Status</label>
+    <div class="status-box deceased">✅ Deceased</div>
+  </div>
+
+  <div class="footer-note">
+    This document serves as formal evidence of the person's death status, verified by medical and civil registry authorities.
+  </div>
+</div>
+
+</body>
+</html>
